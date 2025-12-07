@@ -25,3 +25,48 @@ class Trade:
     side: Side 
     quantity: float 
     price: float 
+
+@dataclass
+class Position:
+    instrument_id: str
+    net_quantity: float = 0.0
+    avg_entry_price: float = 0.0 # weighted average 
+
+    def update_with_trade(self, trade: Trade) -> None:
+        signed_qty = trade.quantity if trade.side == Side.BUY else -trade.quantity
+        new_qty = self.net_quantity + signed_qty
+
+        if new_qty == 0:
+            self.net_quantity = 0
+            self.avg_entry_price = 0.0
+
+        if (self.net_quantity >= 0 and signed_qty > 0) or (self.net_quantity <= 0 and signed_qty < 0):
+            # Adding to existing direction -> recalculate weighted average
+            total_value = self.avg_entry_price * abs(self.net_quantity) + trade.price * abs(signed_qty)
+            self.net_quantity = new_qty
+            self.avg_entry_price = total_value / abs(new_qty)
+
+        else:
+            # Reducing or flipping position 
+            self.net_quantity = new_qty
+            # If direction is flipped, set the new average price to the trade price
+            if (self.net_quantity > 0 and signed_qty > 0) or (self.net_quantity < 0 and signed_qty < 0):
+                self.avg_entry_price = trade.price
+
+@dataclass
+class LimitConfig:
+    max_notional_per_instrument: float
+    max_gross_notional: float 
+
+class AlertSeverity(str, Enum):
+    INFO = "INFO"
+    WARN = "WARN"
+    ERROR = "ERROR"
+
+@dataclass
+class Alert:
+    timestamp: datetime
+    severity: AlertSeverity
+    type: str 
+    message: str 
+    details: Optional[Dict[str, float]] = None
