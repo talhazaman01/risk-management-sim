@@ -54,7 +54,7 @@ class Position:
 
             # If direction is flipped (crossed zero), set the new average price to the trade price       
             if (old_net_quantity <= 0 and new_qty > 0) or (old_net_quantity > 0 and new_qty < 0):
-                self.avg_entry_price = trade.price
+                self.avg_entry_price = trade.price # resets to the trade price as direction has flipped/stays at trade price if both if & else statements are false
 
 @dataclass
 class LimitConfig:
