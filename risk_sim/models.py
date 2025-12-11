@@ -39,6 +39,7 @@ class Position:
         if new_qty == 0:
             self.net_quantity = 0
             self.avg_entry_price = 0.0
+            return
 
         if (self.net_quantity >= 0 and signed_qty > 0) or (self.net_quantity <= 0 and signed_qty < 0):
             # Adding to existing direction -> recalculate weighted average
@@ -48,9 +49,11 @@ class Position:
 
         else:
             # Reducing or flipping position 
+            old_net_quantity = self.net_quantity
             self.net_quantity = new_qty
-            # If direction is flipped, set the new average price to the trade price
-            if (self.net_quantity > 0 and signed_qty > 0) or (self.net_quantity < 0 and signed_qty < 0):
+
+            # If direction is flipped (crossed zero), set the new average price to the trade price       
+            if (old_net_quantity <= 0 and new_qty > 0) or (old_net_quantity > 0 and new_qty < 0):
                 self.avg_entry_price = trade.price
 
 @dataclass
