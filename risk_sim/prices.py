@@ -1,3 +1,5 @@
+# Creates volatility scale, price simulator and price ticks
+
 import random
 from typing import Dict
 from .models import Instrument 

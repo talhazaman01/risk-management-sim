@@ -1,3 +1,5 @@
+# Defines main data types and trade logic
+
 from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
