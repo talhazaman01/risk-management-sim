@@ -1,0 +1,31 @@
+instruments:
+  - id: "AAPL"
+    type: "equity"
+    start_price: 200.0
+    volatility: "medium"
+    min_qty: 10
+    max_qty: 5000
+
+  - id: "MSFT"
+    type: "equity"
+    start_price: 400.0
+    volatility: "low"
+    min_qty: 10
+    max_qty: 5000
+
+  - id: "EURUSD"
+    type: "fx"
+    start_price: 1.10
+    volatility: "very_low"
+    min_qty: 1000
+    max_qty: 100000
+
+limits:
+  max_notional_per_instrument: 1000000.0
+  max_gross_notional: 2000000.0
+
+simulation:
+  price_tick_seconds: 1.0 
+  snapshot_every_n_trades: 20
+  sleep_seconds_between_steps: 0.2
+
