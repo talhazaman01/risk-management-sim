@@ -39,7 +39,7 @@ class RiskEngine:
                 alerts.append(
                     Alert(
                         timestamp=now,
-                        severity=AlertSeverity.CRITICAL,
+                        severity=AlertSeverity.WARN,
                         type="INSTRUMENT_NOTIONAL_LIMIT",
                         message=f"Instrument {inst_id} notional {notional:2f} exceeds limit",
                         details={"notional": notional},
