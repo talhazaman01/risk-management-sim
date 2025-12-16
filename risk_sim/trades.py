@@ -20,7 +20,7 @@ class TradeGenerator:
         price = get_price(inst_id)
 
         return Trade(
-            timestamp=datetime.now(datetime.UTC),
+            timestamp=datetime.now(timezone.utc),
             instrument_id=inst_id,
             side=side,
             quantity=qty,
