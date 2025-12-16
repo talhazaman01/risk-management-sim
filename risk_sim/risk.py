@@ -27,7 +27,7 @@ class RiskEngine:
     
     def check_limits(self, current_prices: Dict[str, float]) -> List[Alert]:
         alerts: List[Alert] = []
-        now = datetime.now(datetime.UTC)
+        now = datetime.now(timezone.utc)
 
         gross_notional = 0.0
         for inst_id, pos in self.positions.items():
