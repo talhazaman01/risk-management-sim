@@ -1,7 +1,7 @@
 # Generates random trades using current prices
 
 import random
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, Tuple
 from .models import Trade, Side
 

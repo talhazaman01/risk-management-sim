@@ -1,6 +1,6 @@
 # Tracks positions, computes PnL and notional, check limits and returns alerts.
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, List, Tuple
 from .models import (
     Position,

@@ -1,7 +1,7 @@
 # Defines main data types and trade logic
 
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timezone
 from enum import Enum
 from typing import Dict, Optional
 
