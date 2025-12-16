@@ -2,7 +2,7 @@ from pathlib import Path
 from typing import Dict, Tuple, Any
 import yaml 
 
-from ..models import Instrument, InstrumentType, LimitConfig
+from ..app.models import Instrument, InstrumentType, LimitConfig
 
 class ConfigError(Exception):
     pass
