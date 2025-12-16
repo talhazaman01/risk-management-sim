@@ -65,7 +65,7 @@ def main():
                 if alerts:
                     print("ALERTS:")
                     for a in alerts:
-                        print(f"- [{a.severity}] {a.type}: {a.message}")
+                        print(f"- [{a.severity.value}] {a.type}: {a.message}")
 
             time.sleep(0.2) # 5 ticks per second
 
