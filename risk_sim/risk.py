@@ -50,7 +50,7 @@ class RiskEngine:
             alerts.append(
                 Alert(
                     timestamp=now,
-                    severity=AlertSeverity.CRITICAL,
+                    severity=AlertSeverity.WARN,
                     type="GROSS_NOTIONAL_LIMIT",
                     message=f"Gross notional {gross_notional:2f} exceeds limit",
                     details={"gross_notional": gross_notional},
@@ -65,7 +65,7 @@ class RiskEngine:
         """
         gross_notional = 0.0
         total_pnl = 0.0
-        positions_view: List[Dict]
+        positions_view: List[Dict] = []
 
         for inst_id, pos in self.positions.items():
             price = current_prices[inst_id]
